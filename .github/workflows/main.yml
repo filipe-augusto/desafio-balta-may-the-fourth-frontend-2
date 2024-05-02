@@ -28,13 +28,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.102
+          dotnet-version: 8.0.0
 
       - name: Install .NET Wasm Tools
         run: dotnet workload install wasm-tools
 
       - name: Restore Dependencies
-        run: dotnet restore Starls.Assets.Presentation
+        run: dotnet restore 
 
       - name: Build
         run: dotnet build -c Release --no-restore
