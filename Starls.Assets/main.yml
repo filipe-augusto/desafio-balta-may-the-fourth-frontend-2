@@ -34,7 +34,7 @@ jobs:
         run: dotnet workload install wasm-tools
 
       - name: Restore Dependencies
-        run: dotnet restore Starls.Assets.Presentation\Starls.Assets.Presentation.csproj
+        run: dotnet restore Starls.Assets.Presentation
 
       - name: Build
         run: dotnet build -c Release --no-restore
