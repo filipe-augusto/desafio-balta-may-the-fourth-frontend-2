@@ -1,0 +1,51 @@
+﻿@page "/pessoas"
+@page "/people"
+@page "/characters"
+@page "/p"
+@inject ICharacterService Service
+
+<PageTitle>Pessoas</PageTitle>
+
+<h1 class="h1-titulo">Pessoas</h1>
+
+<p class="p-titulo">Confira a lista de sucessos de uma galaxia tão tão distante...</p>
+
+@if (characters == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+
+    <div class="row g-5">
+        @foreach (var item in characters)
+        {
+            <DefaultCard ImageUrl="@item.ImageUrl"
+                         Title="@item.Name"
+                         GroupItemLabel1="Peso (kg)"
+                         GroupItemValue1="@item.Mass.ToString()"
+                         GroupItemLabel2="Altura (cm)"
+                         GroupItemValue2="@item.Height.ToString()"
+                         CardDescription="" />
+        }
+    </div>
+}
+
+@code {
+    private List<Character>? characters;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var serviceResult = await Service.GetCharacterAsync();
+
+            characters = serviceResult.ToList();
+        }
+        catch (Exception ex)
+        {
+
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

@@ -1,0 +1,56 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid ">
+        <a class="navbar-brand" href="">
+            <img src="/images/logo2.png" class="img-card-menu-superior" />
+        </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="films">
+                <span class="bi bi-film-nav-menu" aria-hidden="true"></span> Filmes
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="people">
+                <span class="bi bi-person-bounding-box-nav-menu" aria-hidden="true"></span> Personagens
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="planets">
+                <span class="bi bi-highlights-nav-menu" aria-hidden="true"></span> Planetas
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="vehicles">
+                <span class="bi bi-bicycle-nav-menu" aria-hidden="true"></span> Veículos
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="starships">
+                <span class="bi bi-rocket-nav-menu" aria-hidden="true"></span> Naves Estelares
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

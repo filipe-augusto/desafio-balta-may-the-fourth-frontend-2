@@ -1,0 +1,41 @@
+﻿@page "/films"
+@inject IFilmService Service
+
+<PageTitle>Filmes</PageTitle>
+
+<h1 class="h1-titulo">Filmes</h1>
+
+<p class="p-titulo">Confira a lista de sucessos de uma galaxia tão tão distante...</p>
+
+@if (films == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <div class="row g-5">
+        @foreach (var item in films)
+        {
+            <DefaultCard 
+                ImageUrl="@item.ImageUrl"
+                Title="@item.Title"
+                GroupItemLabel1="Lançamento"
+                GroupItemValue1="@item.ReleaseDate.ToString("y")"
+                GroupItemLabel2="Episódio"
+                GroupItemValue2="@item.Episode.ToString()"
+                CardDescription="@item.OpeningCrawl"
+            />
+        }
+    </div>
+}
+
+@code {
+    private List<Film>? films;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var serviceResult = await Service.GetFilmsAsync();
+
+        films = serviceResult.ToList();
+    }
+}
